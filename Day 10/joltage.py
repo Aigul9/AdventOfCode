@@ -12,12 +12,10 @@ with open("joltage.txt", "r") as f:
 
 start = 0
 result = []
-for i in adapters:
-    result.append([i, i - start])
-    start = i
-print(result)
+for i in range(1, len(adapters)):
+    result.append([adapters[i], adapters[i-1]])
 print(summarize(result, 1) * summarize(result, 3))
 paths = {adapters[0]: 1}
 for x in adapters[1:]:
-    paths[x] = sum(paths[x-y] for y in range(1, 4) if x-y in paths)
+    paths[x] = sum(paths[x-y] for y in range(1, 4) if x - y in paths)
 print(paths[adapters[-1]])

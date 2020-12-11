@@ -6,7 +6,7 @@ def part_1(nums):
             
 
 def part_2(nums):
-    for i in range(0, len(nums)):
+    for i in range(len(nums)):
         i_sum = nums[i]
         sum_list = [nums[i]]
         for j in range(i + 1, len(nums)):

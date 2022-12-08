@@ -1,7 +1,7 @@
 from anytree import Node, RenderTree, findall, AsciiStyle
 
 
-with open('7.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     for line in f.readlines():
         line = line.strip()
         if '$ cd' in line:
@@ -28,16 +28,8 @@ with open('7.txt', 'r') as f:
 
 
 print(RenderTree(root, style=AsciiStyle()).by_attr())
-node_sizes = {}
-current_sum = 0
 dirs = findall(root, filter_=lambda n: n.type == 'dir')
 res1 = 0
-for d in dirs:
-    d_sum = sum(node.size for node in d.descendants)
-    if d_sum <= 100000:
-        res1 += d_sum
-print(res1)
-
 total_space = 70000000
 unused_space = 30000000
 available_space = total_space - sum(node.size for node in root.descendants)
@@ -45,6 +37,8 @@ res2 = total_space
 for d in dirs:
     d_sum = sum(node.size for node in d.descendants)
     cur_sum = d_sum + available_space
+    if d_sum <= 100000:
+        res1 += d_sum
     if unused_space <= cur_sum and d_sum < res2:
         res2 = d_sum
-print(res2)
+print(res1, res2)

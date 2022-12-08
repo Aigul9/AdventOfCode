@@ -1,6 +1,6 @@
 import re
 
-with open('4.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     counter = 0
     counter2 = 0
     for line in f.readlines():

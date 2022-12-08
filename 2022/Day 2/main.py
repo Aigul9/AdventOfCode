@@ -1,4 +1,4 @@
-with open('2.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     lines = [line.strip().split() for line in f.readlines()]
 
 opt_points = {

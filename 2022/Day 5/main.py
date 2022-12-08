@@ -12,7 +12,7 @@ def find_all(s, c):
         idx = s.find(c, idx + 1)
 
 
-with open('5.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     stacks = defaultdict(list, {k: [] for k in (1, 2, 3)})
     instructions = []
     for line in f.readlines():

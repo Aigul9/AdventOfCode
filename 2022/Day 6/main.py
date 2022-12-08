@@ -18,7 +18,7 @@ tests = [
     'zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw'  # 11
 ]
 
-with open('6.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     line = f.read()
 
 print(fun(4))

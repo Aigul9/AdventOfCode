@@ -1,4 +1,4 @@
-with open('3.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     intersections = []
     for line in f.readlines():
         line = line.strip()
@@ -11,7 +11,7 @@ sum_intersections = sum((ord(i) - 96) if i.islower() else (ord(i) - 38) for i in
 print(sum_intersections)
 
 
-with open('3.txt', 'r') as f:
+with open('input.txt', 'r') as f:
     lines = [line.split() for line in f.readlines()]
     intersections = []
     for i in range(2, len(lines), 3):

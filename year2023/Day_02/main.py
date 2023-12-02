@@ -4,9 +4,9 @@ from year2023.utils.time import timeit
 
 
 CONSTRAINTS = {
-    "red": 12,
-    "green": 13,
-    "blue": 14
+    'red': 12,
+    'green': 13,
+    'blue': 14
 }
 
 
@@ -35,9 +35,9 @@ def part1(path):
 
 def get_power(subsets):
     max_cubes = {
-        "red": 0,
-        "green": 0,
-        "blue": 0
+        'red': 0,
+        'green': 0,
+        'blue': 0
     }
 
     for subset in subsets.split('; '):

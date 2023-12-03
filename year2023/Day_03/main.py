@@ -1,6 +1,6 @@
 import re
 
-from year2023.utils.time import timeit
+from utils.measure import timeit, memory
 
 
 directions = [(i, j) for i in range(-1, 2) for j in range(-1, 2)]
@@ -15,6 +15,7 @@ def is_adjacent(grid, i, j):
 
 
 @timeit
+@memory
 def part1(path):
     with open(path, 'r') as f:
         grid = f.read().split('\n')
@@ -39,6 +40,7 @@ def is_asterisk_found(grid, i, j):
 
 
 @timeit
+@memory
 def part2(path):
     with open(path, 'r') as f:
         grid = f.read().split('\n')

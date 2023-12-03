@@ -1,6 +1,6 @@
 from math import prod
 
-from year2023.utils.time import timeit
+from utils.measure import timeit
 
 
 CONSTRAINTS = {

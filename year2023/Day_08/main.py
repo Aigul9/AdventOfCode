@@ -2,24 +2,17 @@ import itertools
 import math
 import re
 
-from utils.measure import timeit, memory
-
-
-class Node:
-    def __init__(self, name, left, right):
-        self.name = name
-        self.left = left
-        self.right = right
+from AdventOfCode.utils.measure import timeit, memory
 
 
 def read_file(path):
     with open(path, 'r') as f:
         lines = f.read().split('\n')
         instruction, network = lines[0], lines[2:]
-        nodes = []
+        nodes = {}
         for line in network:
             node, left, right = re.findall(r'\w+', line)
-            nodes.append(Node(node, left, right))
+            nodes[node] = (left, right)
         return instruction, nodes
 
 
@@ -34,9 +27,9 @@ def part1(data):
             break
 
         if i == 'L':
-            current = [node.left for node in nodes if node.name == current][0]
+            current = nodes[current][0]
         elif i == 'R':
-            current = [node.right for node in nodes if node.name == current][0]
+            current = nodes[current][1]
         num_steps += 1
 
     return num_steps
@@ -47,21 +40,21 @@ def part1(data):
 def part2(data):
     instruction, nodes = data
     start_letter, end_letter = 'A', 'Z'
-    starting_list = [node for node in nodes if node.name.endswith(start_letter)]
+    starting_list = [k for k, v in nodes.items() if k.endswith(start_letter)]
     num_steps_set = set()
 
     for start_node in starting_list:
-        current_node_name = start_node.name
+        current = start_node
         num_steps = 0
         for i in itertools.cycle(instruction):
-            if current_node_name.endswith(end_letter):
+            if current.endswith(end_letter):
                 num_steps_set.add(num_steps)
                 break
 
             if i == 'L':
-                current_node_name = [node.left for node in nodes if node.name == current_node_name][0]
+                current = nodes[current][0]
             elif i == 'R':
-                current_node_name = [node.right for node in nodes if node.name == current_node_name][0]
+                current = nodes[current][1]
             num_steps += 1
 
     return math.lcm(*num_steps_set)

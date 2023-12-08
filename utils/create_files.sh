@@ -1,7 +1,6 @@
 #!/bin/bash
 
 read -p "year: " year
-# user="USER INPUT"
 read -p "day in 2-digit format: " day
 
 year_folder="year$year"

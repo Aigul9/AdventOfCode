@@ -2,6 +2,8 @@ import itertools
 import math
 import re
 
+from utils.measure import timeit, memory
+
 
 class Node:
     def __init__(self, name, left, right):
@@ -21,6 +23,8 @@ def read_file(path):
         return instruction, nodes
 
 
+@timeit
+@memory
 def part1(data):
     instruction, nodes = data
     current, end = 'AAA', 'ZZZ'
@@ -38,6 +42,8 @@ def part1(data):
     return num_steps
 
 
+@timeit
+@memory
 def part2(data):
     instruction, nodes = data
     start_letter, end_letter = 'A', 'Z'

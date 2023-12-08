@@ -1,4 +1,5 @@
 import itertools
+import math
 import re
 
 
@@ -7,6 +8,11 @@ class Node:
         self.name = name
         self.left = left
         self.right = right
+
+
+def find_gcd(input_set):
+    x = reduce(gcd, input_set)
+    return x
 
 
 def read_file(path):
@@ -40,30 +46,30 @@ def part1(data):
 def part2(data):
     instruction, nodes = data
     start_letter, end_letter = 'A', 'Z'
-    current_list = [node for node in nodes if node.name.endswith(start_letter)]
-    print(current_list)
-    num_steps = 0
+    starting_list = [node for node in nodes if node.name.endswith(start_letter)]
+    num_steps_set = set()
 
-    # for i in itertools.cycle(instruction):
-    #     if len([node for node in current_list if node.name.endswith(end_letter)]) == len(current_list):
-    #         break
-    #
-    #     if i == 'L':
-    #         current_list = [node for node in nodes for current_node in current_list if node.name == current_node.left]
-    #     elif i == 'R':
-    #         current_list = [node for node in nodes for current_node in current_list if node.name == current_node.right]
-    #     num_steps += 1
-        # print(i, [node.name for node in current_list])
+    for start_node in starting_list:
+        current_node_name = start_node.name
+        num_steps = 0
+        for i in itertools.cycle(instruction):
+            if current_node_name.endswith(end_letter):
+                num_steps_set.add(num_steps)
+                break
 
-    print(current_list)
-    print(num_steps)
-    return num_steps
+            if i == 'L':
+                current_node_name = [node.left for node in nodes if node.name == current_node_name][0]
+            elif i == 'R':
+                current_node_name = [node.right for node in nodes if node.name == current_node_name][0]
+            num_steps += 1
+
+    return math.lcm(*num_steps_set)
 
 
 if __name__ == '__main__':
-    # print(part1(read_file('test.txt')))
-    # print(part1(read_file('test2.txt')))
-    # print(part1(read_file('input.txt')))
+    print(part1(read_file('test.txt')))
+    print(part1(read_file('test2.txt')))
+    print(part1(read_file('input.txt')))
 
     print(part2(read_file('test3.txt')))
-    # print(part2(read_file('input.txt')))
+    print(part2(read_file('input.txt')))

@@ -10,11 +10,6 @@ class Node:
         self.right = right
 
 
-def find_gcd(input_set):
-    x = reduce(gcd, input_set)
-    return x
-
-
 def read_file(path):
     with open(path, 'r') as f:
         lines = f.read().split('\n')

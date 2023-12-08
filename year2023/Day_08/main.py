@@ -12,7 +12,7 @@ def read_file(path):
         nodes = {}
         for line in network:
             node, left, right = re.findall(r'\w+', line)
-            nodes[node] = (left, right)
+            nodes[node] = {'L': left, 'R': right}
         return instruction, nodes
 
 
@@ -26,10 +26,7 @@ def part1(data):
         if current == end:
             break
 
-        if i == 'L':
-            current = nodes[current][0]
-        elif i == 'R':
-            current = nodes[current][1]
+        current = nodes[current][i]
         num_steps += 1
 
     return num_steps
@@ -51,10 +48,7 @@ def part2(data):
                 num_steps_set.add(num_steps)
                 break
 
-            if i == 'L':
-                current = nodes[current][0]
-            elif i == 'R':
-                current = nodes[current][1]
+            current = nodes[current][i]
             num_steps += 1
 
     return math.lcm(*num_steps_set)

@@ -47,5 +47,3 @@ if __name__ == '__main__':
     assert part2(test_left, test_right) == 31
 
     print(part2(input_left, input_right))
-
-

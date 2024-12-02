@@ -6,17 +6,17 @@ def read(path):
         return [list(map(int, line.strip().split())) for line in f.readlines()]
 
 
-@timeit
-@memory
-def part1(data):
-    return sum(is_safe(row) for row in data)
-
-
 def is_safe(row):
     row_diff = [row[i + 1] - row[i] for i in range(len(row) - 1)]
     min_num, max_num = min(row_diff), max(row_diff)
 
     return -3 <= min_num <= max_num <= -1 or 1 <= min_num <= max_num <= 3
+
+
+@timeit
+@memory
+def part1(data):
+    return sum(is_safe(row) for row in data)
 
 
 @timeit

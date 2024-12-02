@@ -9,13 +9,7 @@ def read(path):
 @timeit
 @memory
 def part1(data):
-    total = 0
-
-    for row in data:
-        if is_safe(row):
-            total += 1
-
-    return total
+    return sum(is_safe(row) for row in data)
 
 
 def is_safe(row):
@@ -28,16 +22,7 @@ def is_safe(row):
 @timeit
 @memory
 def part2(data):
-    total = 0
-
-    for row in data:
-        for idx in range(len(row)):
-            row_copy = row[:idx] + row[idx+1:]
-            if is_safe(row_copy):
-                total += 1
-                break
-
-    return total
+    return sum(any(is_safe(row[:idx] + row[idx + 1:]) for idx in range(len(row))) for row in data)
 
 
 if __name__ == '__main__':
